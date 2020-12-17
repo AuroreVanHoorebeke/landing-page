@@ -1,10 +1,9 @@
 const body = document.querySelector("body");
 const main = document.querySelector("main");
-const url = "https://picsum.photos/v2/list";
-const day = document.querySelector(".day");
-const month = document.querySelector(".month");
-const year = document.querySelector(".year");
+const urlPic = "https://picsum.photos/v2/list";
+const date = document.querySelector(".date");
 const time = document.querySelector(".time");
+const copyright = document.querySelector(".copyright");
 
 // function randImg(){
 //     // body.style.backgroundImage = `url(${arrElem.download_url})`
@@ -19,16 +18,15 @@ function displayTime(){
     const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'};
 
     let now = new Date()
-    // console.log(now);
-    let fullDate = now.toLocaleDateString('fr-FR', options);
-    let dayNow = now.toLocaleDateString('fr-FR', options);
-    let timeNow = now.toLocaleTimeString('fr-FR');
-    day.textContent = dayNow;
+    //console.log(now);
+    let dateNow = now.toLocaleDateString(undefined, options);
+    let timeNow = now.toLocaleTimeString(undefined);
+    date.textContent = dateNow;
     time.textContent = timeNow;
     setInterval(displayTime, 1000)
 }
 displayTime()
-fetch(url)
+fetch(urlPic)
 .then(response => response.json())
 .then (array => {
     console.log(array)
@@ -49,7 +47,9 @@ fetch(url)
     console.log(i);
     function setImg(){
         console.log(i);
-        document.body.style.backgroundImage = `url(${array[i].download_url})`
+        body.style.backgroundImage = `url(${array[i].download_url})`
+        copyright.textContent = array[i].author;
+        
         setTimeout(setImg, 30000)
         i++;
         if(i == array.length){
