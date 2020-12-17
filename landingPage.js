@@ -39,7 +39,7 @@ fetch(urlPic)
         body.style.backgroundImage = `url(${array[i].download_url})`
         copyright.textContent = array[i].author;
         
-        setTimeout(setImg, 3000)
+        setTimeout(setImg, 30000)
         i++;
         if(i == array.length){
             i=0;
